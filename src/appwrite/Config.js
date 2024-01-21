@@ -109,7 +109,7 @@ export class Service{
 
     async getFilePreview(fileId){
         try {
-            return await this.bucket.getFilePreview(
+            return await this.bucket.getFilePreview(   //this line can get error
                 configVariable.appwriteBucketId,
                 fileId
             )
@@ -123,4 +123,4 @@ export class Service{
 
 const service = new Service()
 
-export default Service
+export default service
