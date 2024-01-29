@@ -25,16 +25,18 @@ function App() {
 
   return !loading?(
     <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
-      <div className='w-full block '>
+      <div className='w-full block cursor-auto duration-200'>
         <Header/>
           <main>
-           TODO:{/* <Outlet/> */}
+           <Outlet/>
           </main>
         <Footer/>
       </div>
     </div>
   ):(
-    <div>loading....</div>
+    <div className='bg-gray-100 min-h-screen grid '>
+      <div className='loader place-self-center ease-linear rounded-full border-8 border-t-8 border-t-blue-400 animate-spin h-24 w-24'></div>
+    </div>
   )
 }
 

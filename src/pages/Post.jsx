@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import service from '../appwrite/Config'
-import {Button, Container} from '../components'
-import parse from 'html-react-parser'
+import service from '../appwrite/Config';
+import {Button, Container} from '../components';
+import parse from 'html-react-parser';
 import { useSelector } from 'react-redux'
 
 
@@ -10,17 +10,22 @@ function Post() {
     const [post, setPost] = useState(null)
     const {slug} = useParams()
     const navigate = useNavigate()
-    const userData = useState((state)=> state.auth.userData)
+
+    const userData = useSelector((state)=> state.auth.userData)
+
     const isAuther = post && userData ? post.userId === userData.$id : false
+
     useEffect(()=>{
         if(slug){
             service.getPost(slug).then((post)=>{
+                console.log("image",post.featuredImage)
                 if(post) setPost(post)
                 else navigate('/')
-            })
+            });
         }else navigate('/')
-    },[slug, navigate])
-    const deletePost = ()=>{
+    },[slug, navigate]);
+
+    const deletePost = ()=> {
         service.deletePost(post.$id).then((status)=>{
             if(status){
                 service.deleteFile(post.featuredImage);
@@ -33,8 +38,8 @@ function Post() {
         <Container>
             <div className='w-full flex justify-center mb-4 relative border rounded-xl p-2'>
                 <img
-                src={service.getFilePreview(post.featuredImage)}
-                alt={post.title}
+                src={service.getFilePreview(post?.featuredImage)}
+                alt={post?.title}
                 className='rounded-xl'
                 />
                 {isAuther && (

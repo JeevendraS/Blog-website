@@ -12,7 +12,7 @@ function PostFrom({ post }) {
             title: post?.title || '',
             slug: post?.slug || '',
             content: post?.content || '',
-            status: post?.status || 'active',
+            status: post?.status || true,
         }
     })
     const navigate = useNavigate()
@@ -20,7 +20,7 @@ function PostFrom({ post }) {
 
     const submit = async (data) => {
         if (post) {
-            const file = data.image[0] ? service.uploadFile(data.image[0]) : null
+            const file = data.image[0] ? await service.uploadFile(data.image[0]) : null
 
             if (file) {
                 service.deleteFile(post.featuredImage)
@@ -45,28 +45,28 @@ function PostFrom({ post }) {
                     userId: userData.$id
                 })
                 if (databasePost) {
-                    navigate(`/post/${databasePost}`)
+                    navigate(`/post/${databasePost.$id}`)
                 }
             }
 
         }
     }
 
-    const slugTransform = useCallback((value)=>{
-        if(value && typeof value === 'string'){
+    const slugTransform = useCallback((value) => {
+        if (value && typeof value === "string")
             return value
-            .trim()
-            .toLowerCase()
-            .replace(/^[a-zA-Z\d\s]+/g, '-')
-            .replace(/\s/g, '-')
-        }
-        return ''
-    },[])
+                .trim()
+                .toLowerCase()
+                .replace(/[^a-zA-Z\d\s]+/g, "-")
+                .replace(/\s/g, "-");
+
+        return "";
+    }, []);
 
     useEffect(()=>{
-        const subscription = watch((value,{name})=>{
-            if(name === 'title'){
-                setValue('slug',slugTransform(value.title,{shouldValidate: true}))
+        const subscription = watch((value, { name }) => {
+            if (name === "title") {
+                setValue("slug", slugTransform(value.title), { shouldValidate: true });
             }
         })
 
@@ -105,14 +105,14 @@ function PostFrom({ post }) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={service.getFilePreview(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />
                     </div>
                 )}
                 <Select
-                    options={["active", "inactive"]}
+                    options={[true,false]}
                     label="Status"
                     className="mb-4"
                     {...register("status", { required: true })}
