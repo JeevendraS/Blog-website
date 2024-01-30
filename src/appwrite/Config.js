@@ -14,7 +14,7 @@ export class Service{
     }
 
     async createPost({title, slug, content, featuredImage, status, userId}){
-        try { console.log(typeof status)
+        try {
             return await this.databases.createDocument(configVariable.appwriteDatabaseId,configVariable.appwriteCollectionId,slug,{
                 title,
                 content, 
@@ -107,9 +107,9 @@ export class Service{
         }
     }
 
-    async getFilePreview(fileId){
+    getFilePreview(fileId){
         try {
-            return await this.bucket.getFilePreview(   //this line can get error
+            return this.bucket.getFilePreview(   //this line can get error
                 configVariable.appwriteBucketId,
                 fileId
             )
