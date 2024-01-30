@@ -18,7 +18,6 @@ function Post() {
     useEffect(()=>{
         if(slug){
             service.getPost(slug).then((post)=>{
-                console.log("image",post.featuredImage)
                 if(post) setPost(post)
                 else navigate('/')
             });
@@ -38,7 +37,7 @@ function Post() {
         <Container>
             <div className='w-full flex justify-center mb-4 relative border rounded-xl p-2'>
                 <img
-                src={service.getFilePreview(service.getFilePreview(post?.featuredImage))}
+                src={service.getFilePreview(post?.featuredImage)}
                 alt={post?.title}
                 className='rounded-xl'
                 />

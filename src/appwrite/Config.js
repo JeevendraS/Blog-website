@@ -69,9 +69,9 @@ export class Service{
         }
     }
 
-    async getPosts(queries = [Query.equal("status","true")]){
+    async getPosts(queries = [Query.equal("status", true)]){
         try {
-            return await this.databases.getDocument(
+            return await this.databases.listDocuments(
                 configVariable.appwriteDatabaseId,
                 configVariable.appwriteCollectionId,
                 queries)
