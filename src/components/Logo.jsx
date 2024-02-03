@@ -1,13 +1,14 @@
 import React from 'react'
-// import image from './src/assets/logo-color.png'
 
 function Logo({width='100px'}) {
 
   return (
-    <div >
-      <img src={image} alt="" />
+    <div className="flex items-center justify-center cursor-pointer">
+      <div className=" rounded-lg ">
+        <span className="text-white text-3xl font-bold" style={{ caretColor: 'transparent' }}>JeeTalk</span>
+      </div>
     </div>
-  )
+  );
 }
 
 export default Logo
