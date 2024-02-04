@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Logo({width='100px'}) {
+function Logo({width='', className="text-white"}) {
 
   return (
-    <div className="flex items-center justify-center cursor-pointer">
+    <div className={`flex items-center justify-center cursor-pointer w-[${width}]`}>
       <div className=" rounded-lg ">
-        <span className="text-white text-3xl font-bold" style={{ caretColor: 'transparent' }}>JeeTalk</span>
+        <span className={`text-3xl font-bold ${className}`} style={{ caretColor: 'transparent' }}>JeeTalk</span>
       </div>
     </div>
   );

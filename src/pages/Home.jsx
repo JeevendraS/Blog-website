@@ -15,14 +15,10 @@ function Home() {
     },[])
   if(posts.length === 0){
     return (
-        <div className='w-full py-8 mt-4 text-center bg-blue-200 min-h-[70vh]'>
+        <div className='w-full py-8  text-center bg-blue-200 min-h-[70vh]'>
             <Container>
-                <div className='flex flex-wrap'>
-                    <div className='p-2 w-full '>
-                        <h1 className='text-2xl font-bold hover:text-gray-800'>
-                            Login to read Posts
-                        </h1>
-                    </div>
+                <div style={{ caretColor: 'transparent' }} className=' flex flex-wrap text-gray-900 font-bold text-2xl items-center justify-center h-[60vh]'>
+                   Login to read post
                 </div>
             </Container>
         </div>

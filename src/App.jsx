@@ -24,8 +24,8 @@ function App() {
   },[])
 
   return !loading?(
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
-      <div className='w-full block cursor-auto duration-200'>
+    <div className='min-h-screen flex flex-wrap content-between bg-blue-200'>
+      <div style={{ caretColor: 'transparent' }} className='w-full block cursor-auto duration-200' >
         <Header/>
           <main>
            <Outlet/>
@@ -35,7 +35,7 @@ function App() {
     </div>
   ):(
     <div className='bg-gray-100 min-h-screen grid '>
-      <div className='loader place-self-center ease-linear rounded-full border-8 border-t-8 border-t-blue-400 animate-spin h-24 w-24'></div>
+      <div className='loader place-self-center ease-linear rounded-full border-8 border-t-8 border-t-blue-500 animate-spin h-24 w-24'></div>
     </div>
   )
 }
