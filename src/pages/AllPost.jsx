@@ -12,9 +12,9 @@ function AllPost() {
     })
     
   return (
-    <div className='w-full py-8'>
+    <div className='w-full py-8 '>
         <Container>
-            <div className='flex flex-wrap'>
+            <div className='flex flex-wrap min-h-[70vh]'>
                 {posts.map((post)=>(
                     <div className='p-2 w-1/4' key={post.$id}>
                         <PostCard {...post}/>

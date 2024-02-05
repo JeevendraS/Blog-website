@@ -27,14 +27,14 @@ function App() {
     <div className='min-h-screen flex flex-wrap content-between bg-blue-200'>
       <div style={{ caretColor: 'transparent' }} className='w-full block cursor-auto duration-200' >
         <Header/>
-          <main>
+          <main >
            <Outlet/>
           </main>
         <Footer/>
       </div>
     </div>
   ):(
-    <div className='bg-gray-100 min-h-screen grid '>
+    <div className='bg-blue-200 min-h-screen grid '>
       <div className='loader place-self-center ease-linear rounded-full border-8 border-t-8 border-t-blue-500 animate-spin h-24 w-24'></div>
     </div>
   )
