@@ -33,7 +33,7 @@ function Post() {
         });
     };
   return post? (
-    <div className='py-8' style={{ caretColor: 'transparent' }}>
+    <div className='py-8' >
         <Container>
             <div className='w-full flex justify-center mb-4 relative border rounded-xl p-2'>
                 <img
