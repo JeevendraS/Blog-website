@@ -14,6 +14,7 @@ function Post() {
     const userData = useSelector((state) => state.auth.userData)
 
     const isAuther = post && userData ? post.userId === userData.$id : false
+    // console.log(isAuther)
 
     useEffect(() => {
         if (slug) {

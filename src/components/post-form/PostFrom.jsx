@@ -7,10 +7,11 @@ import { useSelector } from 'react-redux'
 
 
 function PostFrom({ post }) {
+    
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
             title: post?.title || '',
-            slug: post?.slug || '',
+            slug: post?.$id || '',
             content: post?.content || '',
             status: post?.status || true,
         }
@@ -19,6 +20,7 @@ function PostFrom({ post }) {
     const userData = useSelector((state) => state.auth.userData)
 
     const submit = async (data) => {
+        console.log(typeof data.status)
         if (post) {
             const file = data.image[0] ? await service.uploadFile(data.image[0]) : null
 
@@ -70,12 +72,11 @@ function PostFrom({ post }) {
             }
         })
 
-        return ()=>{
-            subscription.unsubscribe()
-        }
+        return ()=> subscription.unsubscribe()
+        
     },[watch,slugTransform,setValue])
     return (
-        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap ">
             <div className="w-2/3 px-2">
                 <Input
                     label="Title :"
