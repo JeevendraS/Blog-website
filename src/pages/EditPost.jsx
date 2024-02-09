@@ -22,12 +22,16 @@ function EditPost() {
         }
     },[slug,navigate])
   return posts? (
-    <div className='py-8 '>
+    <div className='py-8 min-h-screen'>
         <Container>
             <PostFrom post={posts}/>
         </Container>
     </div>
-  ):null
+  ):(
+    <div className='bg-blue-200 min-h-screen grid '>
+      <div className='loader place-self-center ease-linear rounded-full border-8 border-t-8 border-t-blue-500 animate-spin h-24 w-24'></div>
+    </div>
+  )
 }
 
 export default EditPost

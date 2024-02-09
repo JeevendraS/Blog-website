@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Button, Input, Select, RTE } from '../index'
 import service from '../../appwrite/Config'
@@ -13,11 +13,13 @@ function PostFrom({ post }) {
             title: post?.title || '',
             slug: post?.$id || '',
             content: post?.content || '',
-            status: post?.status || true,
+            status: post?.status || "active",
         }
     })
     const navigate = useNavigate()
     const userData = useSelector((state) => state.auth.userData)
+    const [image, setImage] = useState(null)
+
 
     const submit = async (data) => {
         console.log(typeof data.status)
@@ -100,6 +102,7 @@ function PostFrom({ post }) {
                     label="Featured Image :"
                     type="file"
                     className="mb-4"
+                    onInput={()=> console.log(getValues)}
                     accept="image/png, image/jpg, image/jpeg, image/gif"
                     {...register("image", { required: !post })}
                 />
@@ -113,7 +116,7 @@ function PostFrom({ post }) {
                     </div>
                 )}
                 <Select
-                    options={[true,false]}
+                    options={["active", "inactive"]}
                     label="Status"
                     className="mb-4"
                     {...register("status", { required: true })}

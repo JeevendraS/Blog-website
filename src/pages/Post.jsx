@@ -14,7 +14,6 @@ function Post() {
     const userData = useSelector((state) => state.auth.userData)
 
     const isAuther = post && userData ? post.userId === userData.$id : false
-    // console.log(isAuther)
 
     useEffect(() => {
         if (slug) {
@@ -71,18 +70,20 @@ function Post() {
         <div className="bg-blue-200 min-h-screen  py-8">
             <Container>
                 <div className="container mx-auto px-4">
-                    <div className="max-w-3xl mx-auto bg-white rounded-lg overflow-hidden relative shadow-lg py-2">
-                        <img
-                            src={service.getFilePreview(post?.featuredImage)}
-                            alt={post?.title}
-                            className="w-full max-h-[90vh] object-contain rounded-t-lg rounded-lg "
-                        />
+                    <div className="max-w-4xl mx-auto bg-white rounded-lg overflow-hidden relative shadow-lg py-2">
+                        <div >
+                            <img
+                                src={service.getFilePreview(post?.featuredImage)}
+                                alt={post?.title}
+                                className="w-full max-h-[90vh] object-contain  "
+                            />
+                        </div>
                         {isAuther && (
                             <div className='absolute right-6 top-6'>
                                 <Link to={`/edit-post/${post.$id}`}>
                                     <Button
                                         bgColor='bg-green-500'
-                                        className='mr-3'
+                                        className='mr-3 active:bg-green-400'
                                     >
                                         Edit
                                     </Button>
@@ -99,10 +100,10 @@ function Post() {
                             <h1 className="text-3xl font-bold mb-4 text-gray-800">
                                 {post.title}
                             </h1>
-                            <p className="text-gray-700 leading-relaxed">
+                            <div className="text-gray-700 leading-relaxed">
                                 {parse(post.content)}
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            </p>
+                            </div>
                         </div>
                         <div className="bg-gray-200 px-6 py-4 flex justify-between items-center">
                             <div className="flex items-center">
@@ -117,23 +118,23 @@ function Post() {
                 </div>
             </Container>
         </div>
-    ) :  (
-        <div className="max-w-3xl mx-auto my-6  bg-white rounded-lg overflow-hidden shadow-lg animate-pulse">
-          <div className="h-[60vh] bg-blue-300"></div>
-          <div className="p-6">
-            <div className="h-6 w-2/3 bg-blue-300 mb-4"></div>
-            <div className="h-4 w-1/2 bg-blue-300 mb-2"></div>
-            <div className="h-4 w-3/4 bg-blue-300"></div>
-          </div>
-          <div className="bg-gray-200 px-6 py-4 flex justify-between items-center">
-            <div className="flex items-center">
-              <div className="h-10 w-10 bg-blue-300 rounded-full"></div>
-              <div className="h-4 w-20 bg-blue-300 ml-2"></div>
+    ) : (
+        <div className="max-w-4xl mx-auto my-6  bg-white rounded-lg overflow-hidden shadow-lg animate-pulse">
+            <div className="h-[60vh] bg-blue-300"></div>
+            <div className="p-6">
+                <div className="h-6 w-2/3 bg-blue-300 mb-4"></div>
+                <div className="h-4 w-1/2 bg-blue-300 mb-2"></div>
+                <div className="h-4 w-3/4 bg-blue-300"></div>
             </div>
-            <div className="h-10 w-20 bg-blue-300"></div>
-          </div>
+            <div className="bg-gray-200 px-6 py-4 flex justify-between items-center">
+                <div className="flex items-center">
+                    <div className="h-10 w-10 bg-blue-300 rounded-full"></div>
+                    <div className="h-4 w-20 bg-blue-300 ml-2"></div>
+                </div>
+                <div className="h-10 w-20 bg-blue-300"></div>
+            </div>
         </div>
-      );
+    );
 }
 
 export default Post
